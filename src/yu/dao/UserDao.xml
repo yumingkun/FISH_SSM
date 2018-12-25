@@ -18,4 +18,15 @@
         select * from users
      </select>
 
+
+    <select id="login" parameterType="yu.bean.User" resultType="yu.bean.User" >
+        select * from users where username=#{username} and password=#{password}
+     </select>
+
+
+    <insert id="addUser"  parameterType="yu.bean.User" >
+        insert into users(username,password,email)  values(#{username},#{password},#{email})
+    </insert>
+
+
 </mapper>
