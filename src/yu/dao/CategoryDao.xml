@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- namespace指用户自定义的命名空间。 -->
+<mapper namespace="yu.dao.CategoryDao">
+
+    <!--<resultMap type="address" id="resultMapAddress">-->
+    <!--<id column="id" property="id"/>-->
+    <!--<result column="username" property="username"/>-->
+    <!--<result column="password" property="password"/>-->
+    <!--<result column="email" property="email"/>-->
+    <!--<result column="head" property="head"/>-->
+    <!--<result column="power" property="power"/>-->
+    <!--</resultMap>-->
+
+    <select id="findAll" resultType="yu.bean.Category" >
+        select * from  category
+     </select>
+
+
+
+</mapper>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- namespace指用户自定义的命名空间。 -->
+<mapper namespace="yu.dao.CarouselDao">
+
+    <resultMap type="yu.bean.Carousel" id="resultMapCarousel">
+        <id     column="id" property="id" javaType="int"/>
+        <result column="img_loc" property="imgLoc" javaType="String" />
+        <result column="create_time" property="createTime" javaType="Date"/>
+    </resultMap>
+
+    <select id="findAll" resultMap="resultMapCarousel" >
+        select * from  carousel order by create_time desc limit 0,4
+     </select>
+
+
+
+
+
+</mapper>

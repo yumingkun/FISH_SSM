@@ -139,7 +139,7 @@
         var password=$("#Password1").val();
         var email=$("#email").val();
         $.ajax({
-            url:"${pageContext.request.contextPath}/show/register",
+            url:"${pageContext.request.contextPath}/show/user/register",
             type:"post",
             contentType:"application/json;charset=utf-8",
             data:JSON.stringify({username:username,password:password,email:email}),

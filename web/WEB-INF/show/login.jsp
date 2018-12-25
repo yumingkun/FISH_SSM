@@ -15,7 +15,7 @@
 
 
 
-<form id="loginform" action="${pageContext.request.contextPath}/show/login" method="post">
+<form id="loginform" action="${pageContext.request.contextPath}/show/user/login" method="post" >
     <canvas id="canvas" width="500" height="170" ></canvas>
     <h1>LOGIN</h1>
     <div class="form-group" >
@@ -27,12 +27,12 @@
         <input type="password" class="form-control"  name="password" id="exampleInputPassword1" placeholder="Password" required pattern="^[a-zA-Z0-9]{6,12}" title="6到10位英文或数字">
     </div>
     <div class="form-group">
-        <a href="${pageContext.request.contextPath}/show/register"> Go Register</a>
+        <a href="${pageContext.request.contextPath}/show/user/register"> Go Register</a>
     </div>
     <div class="form-group">
         <div class="row">
             <div class="col-md-1">
-                <button type="submit" class="btn btn-default">Sign in</button>
+                <button type="submit" class="btn btn-default"  >Sign in</button>
             </div>
         </div>
     </div>
@@ -42,6 +42,27 @@
 </body>
 
 <script>
+
+    <%--// 登录提交--%>
+    <%--function sub() {--%>
+        <%--var username=$("#Username").val();--%>
+        <%--var password=$("#exampleInputPassword1").val();--%>
+        <%--$.ajax({--%>
+            <%--url:"${pageContext.request.contextPath}/show/login",--%>
+            <%--type:"post",--%>
+            <%--contentType:"application/json;charset=utf-8",--%>
+            <%--data:JSON.stringify({username:username,password:password}),--%>
+            <%--success:function (data) {--%>
+                <%--alert(data.username+"登录成功");--%>
+                <%--window.location.href="${pageContext.request.contextPath}/show/allMessage";--%>
+            <%--},--%>
+            <%--error:function (err) {--%>
+                <%--alert("登录失败"+err.toString());--%>
+            <%--}--%>
+        <%--})--%>
+
+    <%--}--%>
+
     var canvas=document.getElementById("canvas");
     var cxt=canvas.getContext("2d");
 

@@ -5,21 +5,6 @@
          version="4.0">
 
 
-    <!-- 编码过滤器 -->
-    <filter>
-        <filter-name>encoding</filter-name>
-        <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
-        <init-param>
-            <param-name>encoding</param-name>
-            <param-value>UTF-8</param-value>
-        </init-param>
-    </filter>
-    <filter-mapping>
-        <filter-name>encoding</filter-name>
-        <url-pattern>/*</url-pattern>
-    </filter-mapping>
-
-
     <!-- 配置加载Spring文件的监听器-->
     <context-param>
         <param-name>contextConfigLocation</param-name>
@@ -31,6 +16,21 @@
         </listener-class>
     </listener>
 
+    <!-- 编码过滤器 -->
+    <filter>
+        <filter-name>encoding</filter-name>
+        <filter-class>
+            org.springframework.web.filter.CharacterEncodingFilter
+        </filter-class>
+        <init-param>
+            <param-name>encoding</param-name>
+            <param-value>UTF-8</param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>encoding</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
 
 
     <!-- 配置Spring MVC前端核心控制器 -->

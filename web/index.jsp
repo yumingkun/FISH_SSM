@@ -9,8 +9,8 @@
 <html>
   <head>
     <title>$Title$</title>
+    <%--自动跳转--%>
+    <meta http-equiv="refresh" content="0;url=<%request.getContextPath();%>/show/user/login">
   </head>
-  <body>
-    <a href="${pageContext.request.contextPath}/show/login">登录</a>
-  </body>
+
 </html>
