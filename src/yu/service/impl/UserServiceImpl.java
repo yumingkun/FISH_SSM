@@ -24,12 +24,27 @@ public class UserServiceImpl  implements UserService {
 
     @Override
     public User login(User user) {
-        return  userDao.login(user);
+        return  userDao.getUser(user);
     }
 
     @Override
     public int addUser(User user) {
         return userDao.addUser(user);
+    }
+
+    @Override
+    public List<User> getUserLimit() {
+        return userDao.getUserLimit();
+    }
+
+    @Override
+    public User getUserById(User user) {
+        return userDao.getUser(user);
+    }
+
+    @Override
+    public int updateUser(User user) {
+        return userDao.updateUser(user);
     }
 
 

@@ -44,7 +44,7 @@
     </style>
 
 <div class="search">
-    <form action="<%=request.getContextPath()%>/show/search.do" method="post" accept-charset="utf-8" id="searchForm">
+    <form action="${pageContext.request.contextPath}/show/message/searchMessage" method="post"  id="searchForm">
         <input type="text" placeholder="搜索" id="myInput" name="search">
         <a class="search-btn" href=""><i class="glyphicon  glyphicon-search"></i></a>
     </form>

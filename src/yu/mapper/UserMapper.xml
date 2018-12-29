@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--namespace属性就是Dao层接口的全路径-->
+<mapper namespace="yu.dao.UserDao">
+
+    <!--<resultMap type="address" id="resultMapAddress">-->
+        <!--<id column="id" property="id"/>-->
+        <!--<result column="username" property="username"/>-->
+        <!--<result column="password" property="password"/>-->
+        <!--<result column="email" property="email"/>-->
+        <!--<result column="head" property="head"/>-->
+        <!--<result column="power" property="power"/>-->
+    <!--</resultMap>-->
+
+    <select id="findAll" resultType="yu.bean.User" >
+        select * from users
+     </select>
+
+    <select id="getUserLimit" resultType="yu.bean.User">
+        select  users.id as id,users.head as head,users.email as email ,users.username as username from message,users where users.id=message.user_id GROUP BY message.user_id ORDER BY count(*) desc LIMIT 0,5
+    </select>
+
+
+    <select id="getUser" parameterType="yu.bean.User" resultType="yu.bean.User" >
+        select id,username,password,email,head,power from users
+        <where>
+            <if test="username!=null and password!=null ">
+               username=#{username} and password=#{password}
+            </if>
+            <if test="id!=null and id!=0 and id!=''">
+                id=#{id}
+            </if>
+        </where>
+
+
+     </select>
+
+    <update id="updateUser" parameterType="yu.bean.User">
+        update users
+        <set>
+            <if test="username!=null and username !=''"> username=#{username},</if>
+            <if test="password!=null and password !=''"> password=#{password},</if>
+            <if test="email!=null and email !=''"> email=#{email},</if>
+            <if test="head!=null and head !=''"> head=#{head}</if>
+        </set>
+        <where>
+            id=#{id}
+        </where>
+
+
+    </update>
+
+
+    <insert id="addUser"  parameterType="yu.bean.User" >
+        insert into users(username,password,email)  values(#{username},#{password},#{email})
+    </insert>
+
+
+</mapper>

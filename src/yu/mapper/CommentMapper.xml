@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--namespace属性就是Dao层接口的全路径-->
+<mapper namespace="yu.dao.CommentDao">
+
+
+
+    <resultMap type="yu.bean.Comment" id="CommentResultMap">
+        <result column="content" property="content"/>
+        <result column="create_time" property="create_time"  javaType="java.util.Date" jdbcType="DATE"/>
+
+        <association property="user" javaType="yu.bean.User">
+            <id     column="user_id" property="id"/>
+            <result column="username" property="username"/>
+            <result column="head" property="head"/>
+        </association>
+
+    </resultMap>
+
+
+    <select id="findComment"  resultMap="CommentResultMap" >
+        select user_id,message_id,content,create_time,username,head from comment,users
+        <where>
+            <choose>
+                <when test="messageId !=null and messageId!=''">
+                    message_id=#{messageId}  and comment.user_id=users.id order by create_time desc
+                </when>
+            </choose>
+        </where>
+     </select>
+
+    <insert id="addComment" parameterType="yu.bean.Comment">
+      insert into comment(user_id,message_id,content,create_time) values(#{user_id},#{message_id},#{content},#{create_time})
+    </insert>
+
+
+
+</mapper>

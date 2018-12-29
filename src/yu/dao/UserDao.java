@@ -15,7 +15,7 @@ public interface UserDao {
       *参数类型
       * @return
       */
-     User login(User user);
+     User getUser(User user);
 
 
      /**
@@ -24,6 +24,19 @@ public interface UserDao {
       * @return
       */
      int addUser(User user);
+
+     /**
+      * 得到文章数排行前五的作者信息
+      * @return
+      */
+      List<User> getUserLimit();
+
+     /**
+      * 更新用户
+      * @param user
+      * @return
+      */
+      int updateUser(User user);
 
 
 

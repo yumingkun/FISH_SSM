@@ -12,10 +12,10 @@
 </head>
 <body>
 
-<h1>登录成功</h1>
+<h1>成功</h1>
 
-${user.username}
-${user.password}
-
+<div>
+    ${message.content}
+</div>
 </body>
 </html>

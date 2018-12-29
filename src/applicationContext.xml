@@ -52,10 +52,15 @@
 
 
 	<!-- 配置mapper扫描器 -->
+	<!--这段配置会扫描yu.dao 下的所有接口，然后创建各自接口的动态代理类。-->
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
 		<property name="basePackage" value="yu.dao" />
 	</bean>
 
 	<!-- 扫描Service -->
 	<context:component-scan base-package="yu.service" />
+
+	<context:component-scan base-package="yu.util" />
+
+
 </beans>

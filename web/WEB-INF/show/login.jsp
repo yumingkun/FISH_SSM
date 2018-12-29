@@ -19,8 +19,8 @@
     <canvas id="canvas" width="500" height="170" ></canvas>
     <h1>LOGIN</h1>
     <div class="form-group" >
-        <label for="Username">Username</label>
-        <input type="text" class="form-control" name="username" id="Username" placeholder="Username"  required pattern="^[a-zA-Z0-9\u4e00-\u9fa5]{4,12}$" title="4到12位">
+        <label for="username">Username</label>
+        <input type="text" class="form-control" name="username" id="username" placeholder="Username"  required pattern="^[a-zA-Z0-9\u4e00-\u9fa5]{4,12}$" title="4到12位">
     </div>
     <div class="form-group">
         <label for="exampleInputPassword1">Password</label>
@@ -43,25 +43,7 @@
 
 <script>
 
-    <%--// 登录提交--%>
-    <%--function sub() {--%>
-        <%--var username=$("#Username").val();--%>
-        <%--var password=$("#exampleInputPassword1").val();--%>
-        <%--$.ajax({--%>
-            <%--url:"${pageContext.request.contextPath}/show/login",--%>
-            <%--type:"post",--%>
-            <%--contentType:"application/json;charset=utf-8",--%>
-            <%--data:JSON.stringify({username:username,password:password}),--%>
-            <%--success:function (data) {--%>
-                <%--alert(data.username+"登录成功");--%>
-                <%--window.location.href="${pageContext.request.contextPath}/show/allMessage";--%>
-            <%--},--%>
-            <%--error:function (err) {--%>
-                <%--alert("登录失败"+err.toString());--%>
-            <%--}--%>
-        <%--})--%>
 
-    <%--}--%>
 
     var canvas=document.getElementById("canvas");
     var cxt=canvas.getContext("2d");

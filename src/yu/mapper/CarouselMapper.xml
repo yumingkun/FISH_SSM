@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<!-- namespace指用户自定义的命名空间。 -->
+<!--namespace属性就是Dao层接口的全路径-->
 <mapper namespace="yu.dao.CarouselDao">
 
     <resultMap type="yu.bean.Carousel" id="resultMapCarousel">

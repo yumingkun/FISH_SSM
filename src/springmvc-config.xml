@@ -16,8 +16,10 @@
 	<!-- 加载注解驱动 -->
 	<mvc:annotation-driven />
 
+
+	<!--<mvc:default-servlet-handler/>-->
+	<!--<mvc:view-controller path="controller" view-name=""></mvc:view-controller>-->
 	<!-- 过滤静态资源 -->
-	<mvc:default-servlet-handler/>
 	<mvc:resources location="/js/" mapping="/js/**"></mvc:resources>
 	<mvc:resources location="/css/" mapping="/css/**"></mvc:resources>
 	<mvc:resources location="/img/" mapping="/img/**"></mvc:resources>

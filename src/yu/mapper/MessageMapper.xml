@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--namespace属性就是Dao层接口的全路径-->
+<mapper namespace="yu.dao.MessageDao">
+
+    <resultMap type="yu.bean.Message" id="MessageResultMap">
+        <id     column="id" property="id"/>
+        <result column="title" property="title"/>
+        <result column="content" property="content"/>
+        <result column="src" property="src"/>
+        <result column="create_time" property="create_time"/>
+        <result column="laud" property="laud"/>
+
+        <association property="category" javaType="yu.bean.Category">
+            <id     column="gid" property="id"/>
+            <result column="gname" property="gname"/>
+        </association>
+        <association property="user" javaType="yu.bean.User">
+            <id     column="user_id" property="id"/>
+            <result column="username" property="username"/>
+            <result column="head" property="head"/>
+        </association>
+
+    </resultMap>
+
+
+
+    <select id="findAllMessage" resultMap="MessageResultMap" >
+--      首页加载更多
+        select message.id ,user_id,users.username as username,title,content,src,create_time,laud,category.id cid,gname from message,category,users  where trash=0 and message.category_id=category.id and message.user_id=users.id order by create_time desc limit #{start},#{count}
+    </select>
+
+    <select id="findMessage"  resultMap="MessageResultMap">
+        select message.id,user_id,users.username as username ,users.head as head,title,content,src,create_time,laud,category.id cid,gname from message,category,users
+        <where>
+            <choose>
+
+
+                <when test="userId!=null and userId!='' and userId>0  and  theTrash!=null">
+--                  根据用户id查询用户全部文章信息
+                    user_id=#{userId}   and trash=#{theTrash} and message.category_id=category.id and message.user_id=users.id order by create_time desc
+                </when>
+
+                <when test="messageId!=null and messageId!=''">
+--                   根据文章id查询文章详情
+                    message.id=#{messageId}    and trash=0 and message.category_id=category.id and message.user_id=users.id
+                </when>
+
+
+                <otherwise>
+--                 首页显示6条推荐文章
+                   trash=0 and message.category_id=category.id and message.user_id=users.id order by laud desc limit 0,6
+                </otherwise>
+            </choose>
+
+
+        </where>
+    </select>
+
+
+
+    <select id="findMessageById"  resultMap="MessageResultMap">
+        select message.id,user_id,users.username as username ,users.head as head,title,content,src,create_time,laud,category.id cid,gname from message,category,users
+        <where>
+            <choose>
+                <when test="messageId!=null and messageId!=''">
+ --                   根据文章id查询文章详情
+                    message.id=#{messageId}    and trash=0 and message.category_id=category.id and message.user_id=users.id
+                </when>
+            </choose>
+
+
+        </where>
+    </select>
+
+    <select id="searchMessage"  resultMap="MessageResultMap">
+        select message.id,user_id,users.username as username ,users.head as head,title,content,src,create_time,laud,category.id cid,gname from message,category,users
+        <where>
+            <choose>
+                <when test="title!=null and title!=''">
+ --                  模糊查询文章
+                    title like concat('%',#{title},'%')    and trash=0 and message.category_id=category.id and message.user_id=users.id
+                </when>
+            </choose>
+
+
+        </where>
+    </select>
+
+
+    <insert id="addMessage"  parameterType="yu.bean.Message" >
+        insert into message(title,content,src,user_id,category_id,create_time)  values(#{title},#{content},#{src},#{user_id},#{category_id},#{create_time})
+    </insert>
+
+
+    <update id="updateMessage" parameterType="yu.bean.Message">
+        update message set trash=#{trash}  where id=#{id}
+    </update>
+
+    <update id="updateMessageById" parameterType="yu.bean.Message">
+        update message set title=#{title},content=#{content},src=#{src},category_id=#{category_id}  where id=#{id}
+    </update>
+
+    <delete id="deleteMessageById" parameterType="int">
+        delete from  message where id=#{id}
+    </delete>
+
+
+</mapper>

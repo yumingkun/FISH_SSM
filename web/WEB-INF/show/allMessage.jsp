@@ -14,15 +14,15 @@
     <title>FISH</title>
     <meta name='viewport' content='width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no'/>
     <%--清除浏览器默认样式--%>
-    <link rel="stylesheet" type="text/css" href="../../css/reset.css"/>
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/css/reset.css"/>
     <%--引入bootstrap--%>
-    <script src="../../js/jquery.js" type="text/javascript" charset="utf-8"></script>
-    <script src="../../js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
-    <link rel="stylesheet" href="../../css/bootstrap.min.css">
+    <script src="${pageContext.request.contextPath }/js/jquery.js" type="text/javascript" charset="utf-8"></script>
+    <script src="${pageContext.request.contextPath }/js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+    <link rel="stylesheet" href="${pageContext.request.contextPath }/css/bootstrap.min.css">
 
     <%--整体css js--%>
-    <link rel="stylesheet" type="text/css" href="../../css/main.css"/>
-    <%--<script src="../../js/main.js" type="text/javascript" charset="utf-8"></script>--%>
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/css/main.css"/>
+    <script src="${pageContext.request.contextPath }/js/main.js" type="text/javascript" charset="utf-8"></script>
 
     <script>
         // 轮播图要求默认第一个
@@ -111,14 +111,26 @@
             margin-top:5px;
             padding: 5px;
             transition: all 1s;
+            /*border: 1px solid red;*/
+            clear: both;
+            /*弹性布局*/
+            display: flex;
+            flex-direction: row;
+            flex-wrap: nowrap;
+            justify-content:flex-start;
+            align-items:center;
         }
         .author:hover{
             box-shadow: 10px 10px 20px gainsboro ;
         }
+
+
         .author img{
-            width: 40px;
-            height: 40px;
+            /*border: 1px solid red;*/
+            width: 35px;
+            height: 35px;
             border-radius: 50%;
+            margin-right: 10px;
         }
 
 
@@ -150,14 +162,30 @@
     <div class="row">
         <!-- 左边分类 -->
         <div class="col-sm-2 hidden-xs">
-            <div class="list-group side-bar" id="xiang">
-                <a class="list-group-item"><span class="glyphicon glyphicon-fire"></span>专题</a>
-                <c:forEach items="${categories}" var="category">
-                    <%--<td>${category.id}</td>--%>
-                    <a href="<%=request.getContextPath()%>/show/oneCategory.do?cid=${category.id}" class="list-group-item">${category.gname}</a>
-                </c:forEach>
+            <div class="side-bar-card flag clearfix" style="margin-top: 0">
+                <div class="card-title">推荐作者</div>
+                <div class="container-fluid">
+                    <c:forEach items="${userlimit}" var="user">
+                        <a href="${pageContext.request.contextPath}/show/message/author/${user.id}">
+                            <div class="row author">
+                                <img src="<%=basePath%>${user.head}">
+                                <p>${user.username}</p>
+                            </div>
+                        </a>
+                    </c:forEach>
+
+
+                </div>
 
             </div>
+            <%--<div class="list-group side-bar" id="xiang">--%>
+                <%--<a class="list-group-item"><span class="glyphicon glyphicon-fire"></span>专题</a>--%>
+                <%--<c:forEach items="${categories}" var="category">--%>
+                    <%--&lt;%&ndash;<td>${category.id}</td>&ndash;%&gt;--%>
+                    <%--<a href="<%=request.getContextPath()%>/show/oneCategory.do?cid=${category.id}" class="list-group-item">${category.gname}</a>--%>
+                <%--</c:forEach>--%>
+
+            <%--</div>--%>
         </div>
         <!-- 左边分类END -->
         <!-- 中间内容 -->
@@ -193,50 +221,50 @@
 
             <%--初始值--%>
             <div class="new-list mylist">
-                <%--<c:forEach items="${messages}" var="message">--%>
-                    <%--<div class="new-list-item clearfix">--%>
-                        <%--<div class="col-xs-4 .text-center" >--%>
+                <c:forEach items="${messages}" var="message">
+                    <div class="new-list-item clearfix">
+                        <div class="col-xs-4 .text-center" >
 
-                            <%--<c:choose>--%>
+                            <c:choose>
 
-                                <%--<c:when test="${not empty message.src}">--%>
-                                    <%--<img src="${message.src}" class="thumbnail">--%>
-                                <%--</c:when>--%>
+                                <c:when test="${not empty message.src}">
+                                    <img src="${message.src}" class="thumbnail">
+                                </c:when>
 
-                                <%--<c:otherwise>  <!--否则 -->--%>
-                                    <%--<img src="../../img/nullsrc.png" id="nullImg" class="thumbnail">--%>
-                                <%--</c:otherwise>--%>
+                                <c:otherwise>  <!--否则 -->
+                                    <img src="../../img/nullsrc.png" id="nullImg" class="thumbnail">
+                                </c:otherwise>
 
-                            <%--</c:choose>--%>
+                            </c:choose>
 
-                            <%--&lt;%&ndash;<c:if test="${message.src==null or message.src==''}">&ndash;%&gt;--%>
+                            <%--<c:if test="${message.src==null or message.src==''}">--%>
 
-                            <%--&lt;%&ndash;</c:if>&ndash;%&gt;--%>
-                            <%--&lt;%&ndash;<c:if test="">&ndash;%&gt;--%>
+                            <%--</c:if>--%>
+                            <%--<c:if test="">--%>
 
-                            <%--&lt;%&ndash;</c:if>&ndash;%&gt;--%>
-                        <%--</div>--%>
-                        <%--<div class="col-xs-7">--%>
+                            <%--</c:if>--%>
+                        </div>
+                        <div class="col-xs-7">
 
-                            <%--<a href="<%=request.getContextPath()%>/show/detail.do?id=${message.id}&userId=${message.userId}" class="title">${message.title}</a>--%>
-                            <%--&lt;%&ndash;<div class="content">&ndash;%&gt;--%>
-                                    <%--&lt;%&ndash;&lt;%&ndash;<p>${message.content}</p>&ndash;%&gt;&ndash;%&gt;--%>
-
-                            <%--&lt;%&ndash;</div>&ndash;%&gt;--%>
-                            <%--<div class="info">--%>
-                                <%--<span class="glyphicon glyphicon-tag" style="color: #a5d1a4"></span>--%>
-                                <%--<span>${message.category.gname}</span>--%>
-                                <%--<span class="glyphicon glyphicon-user" style="color: #b6bfd9"></span>--%>
-                                <%--<span>${message.userName} </span>--%>
-                                <%--<span class="glyphicon glyphicon-heart" style="color: #d17687"></span>--%>
-                                <%--<span>${message.laud}</span>--%>
+                            <a href="${pageContext.request.contextPath}/show/message/detail/${message.id}" class="title">${message.title}</a>
+                            <%--<div class="content">--%>
+                                    <%--&lt;%&ndash;<p>${message.content}</p>&ndash;%&gt;--%>
 
                             <%--</div>--%>
+                            <div class="info">
+                                <span class="glyphicon glyphicon-tag" style="color: #a5d1a4"></span>
+                                <span>${message.category.gname}</span>
+                                <span class="glyphicon glyphicon-user" style="color: #b6bfd9"></span>
+                                <span>${message.user.username} </span>
+                                <span class="glyphicon glyphicon-heart" style="color: #d17687"></span>
+                                <span>${message.laud}</span>
+
+                            </div>
 
 
-                        <%--</div>--%>
-                    <%--</div>--%>
-                <%--</c:forEach>--%>
+                        </div>
+                    </div>
+                </c:forEach>
                 <div class="showMore" style="margin-top: 10px">
 
                 </div>
@@ -250,49 +278,30 @@
                 <%--</c:if>--%>
 
                 <%--<c:if test="${show!=1}">--%>
-                    <%--<div class="more" onclick="page()">--%>
-                        <%--加载更多--%>
-                    <%--</div>--%>
+                    <div class="more" onclick="page()">
+                        加载更多
+                    </div>
                 <%--</c:if>--%>
 
         </div>
         <!-- 中间内容END -->
         <!-- 右边内容 -->
         <div class="col-sm-3 hidden-xs">
-            <div class="side-bar-card flag clearfix" style="margin-top: 0">
-                <div class="card-title">推荐作者</div>
-                <div class="container-fluid">
-                    <%--<c:forEach items="${userlimit}" var="user">--%>
-                        <%--<a href="<%=request.getContextPath()%>/show/authorMessage.do?authorId=${user.id}">--%>
-                            <%--<div class="row author">--%>
-                                <%--<div class="col-xs-4">--%>
-                                    <%--<img src="<%=basePath%>${user.head}">--%>
-                                <%--</div>--%>
-                                <%--<div class="col-cs-6 " style="height: 40px;line-height: 40px">--%>
-                                    <%--<p>${user.username}</p>--%>
-                                <%--</div>--%>
-                            <%--</div>--%>
-                        <%--</a>--%>
-                    <%--</c:forEach>--%>
 
 
-                </div>
-
-            </div>
-
-            <br>
+            <%--<br>--%>
             <div class="side-bar-card">
                 <div class="card-title">推荐文章</div>
                 <div class="card-body">
                     <div class="list">
-                        <%--<c:forEach items="${messagesLauds}" var="messagesLaud">--%>
-                            <%--<a href="<%=request.getContextPath()%>/show/detail.do?id=${messagesLaud.id}&userId=${messagesLaud.userId}" >--%>
-                                <%--<div class="item" >--%>
-                                    <%--<div class="title">${messagesLaud.title}</div>--%>
-                                    <%--<div class="desc"><span class="glyphicon glyphicon-heart"></span>  ${messagesLaud.laud} </div>--%>
-                                <%--</div>--%>
-                            <%--</a>--%>
-                        <%--</c:forEach>--%>
+                        <c:forEach items="${messageLimit}" var="message">
+                            <a href="${pageContext.request.contextPath}/show/message/detail/${message.id}" >
+                                <div class="item" >
+                                    <div class="title">${message.title}</div>
+                                    <div class="desc"><span class="glyphicon glyphicon-heart"></span> ${message.laud} </div>
+                                </div>
+                            </a>
+                        </c:forEach>
                     </div>
                 </div>
             </div>
@@ -317,52 +326,52 @@
 <script type="text/javascript">
 
     // 实现加载更多
-    <%--var clickNum = 0;//点击次数--%>
-    <%--function page(){--%>
-        <%--clickNum++;--%>
-        <%--$.ajax({--%>
-            <%--type:"post",--%>
-            <%--url:"<%=request.getContextPath()%>/show/more.do?clickNum="+clickNum,--%>
-            <%--dataType:"json",--%>
-            <%--success:function(data){--%>
-                <%--var str="";--%>
-                <%--$.each(data,function(i,message){--%>
-                    <%--var src=message.src?message.src:"../../img/nullsrc.png";--%>
-                    <%--var tyle=message.src?"":"style=\"width: 130px;height: 90px;border: 2px solid #b9def0\"";--%>
-                    <%--str+=`--%>
-                         <%--<div class="new-list-item clearfix" >--%>
-                            <%--<div class="col-xs-4">--%>
-                                <%--<img src='`+src+`' alt="" `+tyle+` class="thumbnail">--%>
-                            <%--</div>--%>
-                            <%--<div class="col-xs-7">--%>
+    var clickNum = 0;//点击次数
+    function page(){
+        clickNum++;
+        $.ajax({
+            type:"post",
+            url:"${pageContext.request.contextPath}/show/message/more/"+clickNum,
+            dataType:"json",
+            success:function(data){
+                var str="";
+                $.each(data,function(i,message){
+                    var src=message.src?message.src:"../../img/nullsrc.png";
+                    var tyle=message.src?"":"style=\"width: 130px;height: 90px;border: 2px solid #b9def0\"";
+                    str+=`<div class="new-list-item clearfix" >
+                            <div class="col-xs-4">
+                                <img src='`+src+`' alt="" `+tyle+` class="thumbnail">
+                            </div>
+                            <div class="col-xs-7">
 
-                                <%--<a href="/show/detail.do?id=`+message.id+`&userId=`+message.userId+`" class="title">`+message.title+`</a>--%>
-                                <%--<div class="content">--%>
-                                        <%--&lt;%&ndash;<p>${message.content}</p>&ndash;%&gt;--%>
-                                <%--</div>--%>
-                                   <%--<div class="info">--%>
-                                <%--<span class="glyphicon glyphicon-tag" style="color: #a5d1a4"></span>--%>
-                                <%--<span>`+message.category.gname+`</span>--%>
-                                <%--<span class="glyphicon glyphicon-user" style="color: #b6bfd9"></span>--%>
-                                <%--<span>`+message.userName+` </span>--%>
-                                <%--<span class="glyphicon glyphicon-heart" style="color: #d17687"></span>--%>
-                                <%--<span>`+message.laud+`</span>--%>
+                                <a href="/show/detail.do?id=`+message.id+`&userId=`+message.user.id+`" class="title">`+message.title+`</a>
+                                <div class="content">
+                                        <%--<p>${message.content}</p>--%>
+                                </div>
+                                   <div class="info">
+                                <span class="glyphicon glyphicon-tag" style="color: #a5d1a4"></span>
+                                <span>`+message.category.gname+`</span>
+                                <span class="glyphicon glyphicon-user" style="color: #b6bfd9"></span>
+                                <span>`+message.user.username+` </span>
+                                <span class="glyphicon glyphicon-heart" style="color: #d17687"></span>
+                                <span>`+message.laud+`</span>
 
-                            <%--</div>--%>
+                            </div>
 
-                            <%--</div>--%>
-                        <%--</div>--%>
+                            </div>
+                        </div>
 
-                    <%--`;--%>
-                <%--});--%>
+                    `;
 
-             <%--$(".showMore").hide().append(str).show(1000);--%>
+                });
+
+             $(".showMore").hide().append(str).show(1000);
 
 
 
-            <%--}--%>
-        <%--});--%>
-    <%--}--%>
+            }
+        });
+    }
 
 
 

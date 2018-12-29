@@ -12,9 +12,11 @@
     <title>Title</title>
 </head>
 <body>
-    <c:forEach items="${users}" var="user">
-        <h2>${user.username}</h2>
-    </c:forEach>
+    <%--<c:forEach items="${users}" var="user">--%>
+        <%--<h2>${user.id}${user.username}</h2>--%>
+    <%--</c:forEach>--%>
+
+    <h1>${user1.id}${user1.username}</h1>
 </body>
 </html>
 <%----%>

@@ -40,7 +40,7 @@
         <%--<h3><small>新建留言</small></h3>--%>
     <%--</div>--%>
     <div class="col-sm-10 col-sm-offset-1">
-        <form class="form-horizontal" action="<%=request.getContextPath()%>/show/addMessage.do" method="post">
+        <form class="form-horizontal" action="<%=request.getContextPath()%>/show/message/addMessage" method="post">
             <div class="form-group">
                 <%--<label for="inputTitle" class="col-sm-2 control-label">标题 ：</label>--%>
                 <div class="col-sm-12">

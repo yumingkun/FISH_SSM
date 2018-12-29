@@ -56,35 +56,33 @@
             </ul>
             <ul class="navbar-right nav navbar-nav">
 
-                <%--<h1>${sessionScope.user}</h1>--%>
-                <%--<c:choose>--%>
-                    <%--<c:when test="${sessionScope.user !=null }">--%>
-                        <%--<li><img alt="" src="<%=basePath%>${sessionScope.user.head}" class="file_icon"></li>--%>
-                        <%--<li>--%>
-                                <%--&lt;%&ndash;下拉菜单&ndash;%&gt;--%>
-                            <%--<ul class="nav navbar-nav" style="z-index: 3">--%>
-                                <%--<li class="dropdown">--%>
-                                    <%--<a href="#" class="dropdown-toggle" data-toggle="dropdown">--%>
-                                        <%--${sessionScope.user.username}--%>
-                                        <%--<b class="caret"></b>--%>
-                                    <%--</a>--%>
-                                    <%--<ul class="dropdown-menu">--%>
-                                        <%--<li><a href="<%=request.getContextPath()%>/show/user.do"><span class="glyphicon glyphicon-user"></span> 个人中心</a> </li>--%>
-                                        <%--<li><a href="<%=request.getContextPath()%>/show/allUploadDoc.do"><span class="glyphicon glyphicon-folder-open"></span> 文件中心</a> </li>--%>
+                <c:choose>
+                    <c:when test="${sessionScope.user !=null }">
+                        <li><img alt="" src="<%=basePath%>${sessionScope.user.head}" class="file_icon"></li>
+                        <li>
+                                <%--下拉菜单--%>
+                            <ul class="nav navbar-nav" style="z-index: 3">
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                        ${sessionScope.user.username}
+                                        <b class="caret"></b>
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="${pageContext.request.contextPath}/show/user/theUser/${sessionScope.user.id}"><span class="glyphicon glyphicon-user"></span> 个人中心</a> </li>
 
 
-                                        <%--<li class="divider"></li>--%>
-                                        <%--<li><a href="<%=request.getContextPath()%>/show/quit.do"><span class="glyphicon glyphicon-log-out"></span> 退出</a></li>--%>
-                                    <%--</ul>--%>
-                                <%--</li>--%>
-                            <%--</ul>--%>
-                                <%--&lt;%&ndash;end下拉菜单&ndash;%&gt;--%>
-                        <%--</li>--%>
-                    <%--</c:when>--%>
-                    <%--<c:otherwise >--%>
-                        <%--<li><img alt="" src="../../../img/notlogin.jpg" class="file_icon"></li>--%>
-                    <%--</c:otherwise>--%>
-                <%--</c:choose>--%>
+                                        <li class="divider"></li>
+                                        <li><a href="${pageContext.request.contextPath}/show/user/quit"><span class="glyphicon glyphicon-log-out"></span> 退出</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                                <%--end下拉菜单--%>
+                        </li>
+                    </c:when>
+                    <c:otherwise >
+                        <li><img alt="" src="../../../img/notlogin.jpg" class="file_icon"></li>
+                    </c:otherwise>
+                </c:choose>
 
 
                 <li><a href="<%=request.getContextPath()%>/show/message/toWrite"><span class="glyphicon glyphicon-edit"></span> 写文章</a></li>
