@@ -16,4 +16,6 @@ public interface MessageService {
     int deleteMessageById(int id);
     int updateMessageById(Message message);
     List<Message> searchMessage(String title);
+    int addLaud(Message message);
+
 }

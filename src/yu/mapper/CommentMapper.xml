@@ -20,6 +20,23 @@
     </resultMap>
 
 
+    <resultMap type="yu.bean.Comment" id="ResultMap">
+        <id column="commentId" property="id"/>
+        <result column="content" property="content"/>
+        <result column="create_time" property="create_time"  javaType="java.util.Date" jdbcType="DATE"/>
+
+        <association property="user" javaType="yu.bean.User">
+            <id     column="userId" property="id"/>
+            <result column="username" property="username"/>
+        </association>
+
+        <association property="message" javaType="yu.bean.Message">
+            <result column="title" property="title"/>
+        </association>
+
+    </resultMap>
+
+
     <select id="findComment"  resultMap="CommentResultMap" >
         select user_id,message_id,content,create_time,username,head from comment,users
         <where>
@@ -31,10 +48,18 @@
         </where>
      </select>
 
+    <select id="findCommentByUserId" resultMap="ResultMap">
+         select comment.id as commentId,comment.content as content,comment.create_time as create_time,users.id as userId, users.username as username ,message.title as title   from comment,message,users
+         where users.id=comment.user_id  and comment.message_id=message.id and message.user_id=#{userId} and trash=0 ORDER BY comment.create_time DESC
+    </select>
+
     <insert id="addComment" parameterType="yu.bean.Comment">
       insert into comment(user_id,message_id,content,create_time) values(#{user_id},#{message_id},#{content},#{create_time})
     </insert>
 
+    <delete id="deleteComment" >
+        delete from comment where id=#{commentId}
+    </delete>
 
 
 </mapper>

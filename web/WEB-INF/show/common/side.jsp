@@ -109,6 +109,7 @@
         <div class="row">
             <ul class="nav nav-pills nav-stacked list-group col-md-12 col-xs-6 ">
                 <li class="list-group-item"><a href="${pageContext.request.contextPath}/show/user/theUser/${user.id}">个人中心</a></li>
+                <li class="list-group-item"><a href="${pageContext.request.contextPath}/show/comment/theComment/${user.id}">我的评论</a></li>
                 <%--<li class="list-group-item"><a href="<%=request.getContextPath()%>/show/toUserComment.do">我的评论</a></li>--%>
                 <%--<li class="list-group-item"><a href="<%=request.getContextPath()%>/show/toFollow.do">我的关注</a></li>--%>
                 <%--<li class="list-group-item"><a href="<%=request.getContextPath()%>/show/toFan.do">我的粉丝</a></li>--%>

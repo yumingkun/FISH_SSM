@@ -80,7 +80,7 @@
         <where>
             <choose>
                 <when test="title!=null and title!=''">
- --                  模糊查询文章
+                    --                  模糊查询文章
                     title like concat('%',#{title},'%')    and trash=0 and message.category_id=category.id and message.user_id=users.id
                 </when>
             </choose>
@@ -96,7 +96,14 @@
 
 
     <update id="updateMessage" parameterType="yu.bean.Message">
-        update message set trash=#{trash}  where id=#{id}
+        update message
+        <set>
+            <if test="trash!=null ">trash=#{trash},</if>
+            <if test="laud!=null and laud!=''"> laud=laud+1,</if>
+        </set>
+        <where>
+            id=#{id}
+        </where>
     </update>
 
     <update id="updateMessageById" parameterType="yu.bean.Message">

@@ -15,4 +15,6 @@ public interface UserService {
 
     User getUserById(User user);
     int updateUser(User user);
+
+    int updateUserHead(User user);
 }

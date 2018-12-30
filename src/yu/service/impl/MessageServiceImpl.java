@@ -64,4 +64,9 @@ public class MessageServiceImpl implements MessageService {
 
         return messageDao.searchMessage(title);
     }
+
+    @Override
+    public int addLaud(Message message) {
+        return messageDao.updateMessage(message);
+    }
 }

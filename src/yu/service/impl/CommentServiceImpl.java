@@ -22,4 +22,14 @@ public class CommentServiceImpl implements CommentService {
     public int addComment(Comment comment) {
         return commentDao.addComment(comment);
     }
+
+    @Override
+    public List<Comment> findCommentByUserId(int userId) {
+        return commentDao.findCommentByUserId(userId);
+    }
+
+    @Override
+    public int deleteCommentById(int commentId) {
+        return commentDao.deleteComment(commentId);
+    }
 }

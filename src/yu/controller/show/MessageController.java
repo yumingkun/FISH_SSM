@@ -261,6 +261,22 @@ public class MessageController {
 
     }
 
+    //点赞
+    @RequestMapping("/addLaud/{messageId}")
+    @ResponseBody
+    public String addLaud(@PathVariable String messageId){
+        int id=Integer.parseInt(messageId);
+        Message message=new Message();
+        message.setId(id);
+        message.setLaud(6);
+        int result=messageService.addLaud(message);
+        if (result>0){
+            return "点赞成功";
+        }
+
+        return "点赞失败";
+    }
+
 
 
 }

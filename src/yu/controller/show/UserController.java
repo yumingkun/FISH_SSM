@@ -6,11 +6,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
 import yu.bean.User;
 import yu.service.UserService;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.io.File;
+import java.io.IOException;
+import java.util.Date;
 import java.util.List;
 
 
@@ -97,5 +101,33 @@ public class UserController {
             session.setAttribute("user",u);
         }
         return "forward:theUser/"+user.getId();
+    }
+
+    @RequestMapping("/uploadHead")
+//    @ResponseBody
+    public String upload2(@RequestParam("head") CommonsMultipartFile file,HttpSession session){
+
+        String newName = "";
+        //文件上传
+        if(!file.isEmpty()){
+            String oldName = file.getOriginalFilename();
+            newName = new Date().getTime()+oldName.substring(oldName.lastIndexOf("."));
+            File newFile = new File("/Users/mingkunyu/upload/"+newName);
+            try {
+                file.transferTo(newFile);
+            } catch (IllegalStateException | IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        User u=(User)session.getAttribute("user");
+        u.setHead("upload/"+newName);
+        //调用业务逻辑层
+        int result=userService.updateUserHead(u);
+        if (result>0){
+            session.setAttribute("user",u);
+        }
+
+        return "forward:theUser/"+u.getId();
     }
 }

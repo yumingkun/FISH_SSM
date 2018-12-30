@@ -9,4 +9,6 @@ import java.util.List;
 public interface CommentService {
     List<Comment> getComment(int  messageId );
     int addComment(Comment comment);
+    List<Comment> findCommentByUserId( int userId);
+    int  deleteCommentById(int commentId);
 }

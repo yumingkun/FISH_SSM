@@ -187,8 +187,10 @@
             success:function(data){
                 alert("恢复成功");
                 $("#"+id).hide(1000);
-
                 $("#tishi").show(1000).delay(2000).hide(3000);
+            },
+            error:function (err) {
+               alert("恢复失败");
             }
         });
 

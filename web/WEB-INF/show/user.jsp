@@ -91,8 +91,8 @@
 
 
 <%--表单--%>
-<form action="<%=request.getContextPath()%>/show/upload.do" method="post" enctype="multipart/form-data" id="myForm" class="form">
-    <input type="file" id="myFile" name="myFile" style="display: none">
+<form action="${pageContext.request.contextPath}/show/user/uploadHead" method="post" enctype="multipart/form-data" id="myForm" class="form">
+    <input type="file" id="myFile" name="head" style="display: none">
 </form>
 
 

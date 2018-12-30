@@ -21,4 +21,18 @@ public interface CommentDao {
      * @return
      */
     int addComment(Comment comment);
+
+    /**
+     * 用户所有的评论
+     * @return
+     */
+    List<Comment> findCommentByUserId(@Param("userId") int userId);
+
+
+    /**
+     * 删除评论
+     * @param commentId
+     * @return
+     */
+    int  deleteComment(@Param("commentId") int commentId);
 }

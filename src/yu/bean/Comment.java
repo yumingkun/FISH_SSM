@@ -17,7 +17,15 @@ public class Comment {
 
 
     private User user;         //此文章评论者的信息
+    private Message message;  //评论的文章
 
+    public Message getMessage() {
+        return message;
+    }
+
+    public void setMessage(Message message) {
+        this.message = message;
+    }
 
     public Comment() {
     }

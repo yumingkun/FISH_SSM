@@ -511,16 +511,14 @@
     function addLuad() {
         $.ajax({
             type:"post",
-            async: true,//
-            url:"<%=request.getContextPath()%>/show/addLaud.do?messageId="+${message.id},
+            url:"${pageContext.request.contextPath}/show/message/addLaud/"+${message.id},
             success:function(){
                 num++;
                 $("#myLaudNum").text(num);
                 $("#like").attr("onclick"," ");
-
             },
             error:function( XMLHttpRequest, textStatus, errorThrown){
-                // $(".allComment").append("失败");
+                alert("点赞失败");
             },
 
 
@@ -529,22 +527,22 @@
 
 
 
-    //添加关注insert
-    function addFollow() {
-        $.ajax({
-            type:"post",
-            url:"<%=request.getContextPath()%>/show/comment/addFollow/${message.user.id}/${sessionScope.user.id}",
-            success:function(data){
-                $(".follow").text("已关注");
-                $(".follow").attr("onclick","")
-            },
-            error:function( XMLHttpRequest, textStatus, errorThrown){
-                 alert("失败")
-            },
+    <%--//添加关注insert--%>
+    <%--function addFollow() {--%>
+        <%--$.ajax({--%>
+            <%--type:"post",--%>
+            <%--url:"<%=request.getContextPath()%>/show/comment/addFollow/${message.user.id}/${sessionScope.user.id}",--%>
+            <%--success:function(data){--%>
+                <%--$(".follow").text("已关注");--%>
+                <%--$(".follow").attr("onclick","")--%>
+            <%--},--%>
+            <%--error:function( XMLHttpRequest, textStatus, errorThrown){--%>
+                 <%--alert("失败")--%>
+            <%--},--%>
 
 
-        });
-    }
+        <%--});--%>
+    <%--}--%>
 
 
 

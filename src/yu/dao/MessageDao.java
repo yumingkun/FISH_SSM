@@ -33,7 +33,7 @@ public interface MessageDao {
 
 
     /**
-     * 文章放入回收站或者恢复
+     * 文章放入回收站或者恢复或点赞
      * @return
      */
     int updateMessage(Message message);
